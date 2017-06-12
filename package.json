@@ -1,0 +1,19 @@
+{
+  "name": "azurenotification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "sheeraz",
+  "license": "ISC",
+  "dependencies": {
+    "azure": "^2.0.0-preview",
+    "azure-sb": "^0.10.4",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.10.5"
+  }
+}
