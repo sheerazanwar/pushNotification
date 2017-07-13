@@ -62,7 +62,8 @@ exports.sendPushNotification = function (req, res) {
             data: {
               message: req.body.pushNotification,
               imageUrl: req.body.imageUrl,
-              packageName: req.body.packageName
+              packageName: req.body.packageName,
+              type: req.body.contentType
             }
           };
           var tags = null;
