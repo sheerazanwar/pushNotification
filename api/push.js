@@ -60,6 +60,7 @@ exports.sendPushNotification = function (req, res) {
           var notificationHubService = azure.createNotificationHubService(resData.appName,resData.appUrl);
           var payload = {
             data: {
+              title: req.body.title,
               message: req.body.pushNotification,
               imageUrl: req.body.imageUrl,
               type: req.body.contentType
