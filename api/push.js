@@ -60,7 +60,9 @@ exports.sendPushNotification = function (req, res) {
           var notificationHubService = azure.createNotificationHubService(resData.appName,resData.appUrl);
           var payload = {
             data: {
-              message: req.body.pushNotification
+              message: req.body.pushNotification,
+              imageUrl: req.body.imageUrl,
+              packageName: req.body.packageName
             }
           };
           var tags = null;
@@ -74,7 +76,7 @@ exports.sendPushNotification = function (req, res) {
                 //notification sent
                 res.send({"message":"notification sent successfully"});
               } else {
-                res.send({"message":"notification sent successfully"});
+                res.send({"message":"notification was not successfully, Something went wrong"});
               }
             });
         }
