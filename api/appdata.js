@@ -17,7 +17,7 @@ exports.add = function (req, res) {
     new app({title: req.body.title, message: req.body.message, package:req.body.package, type: req.body.type,imageUrl: req.body.imageUrl})
       .save(function (err, app) {
         if (err) {
-          res.send({error: error})
+          res.send({error: err})
         } else {
           res.send(app);
         }
@@ -28,12 +28,36 @@ exports.add = function (req, res) {
 
 
 exports.getAppData = function (req, res) {
-  
-    app.find({package:req.params.package}).exec(function(error,result){
+    console.log("in");
+    app.findOne({package:req.params.package}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
         }else{
-            res.status(200).send({result:result});
+            if(result){
+                if(result.type!= "app"){
+                    res.status(200).send(result);
+                
+            }else{
+                app.find().exec(function(error,data){
+                    if(error){
+                        res.status(500).send(error);
+                    }else if(data.length>0){
+                        console.log(data);
+                        for(var i=0;i<data.length;i++)
+                        {
+                            if(data[i].type!="app"){
+                                data[i].package = undefined;
+                                res.status(200).send(data[i]);
+                                res.end();
+                            }
+                        }   
+                    }else{
+                        res.status.send("no data found");
+                    }
+                })
+            }
+
+        }
         }
     })
 
