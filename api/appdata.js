@@ -29,10 +29,10 @@ exports.add = function (req, res) {
 
 exports.getAppData = function (req, res) {
     console.log("in");
-    if(req.params.package==null || req.params.package==""){
-        res.status(400).send("params missing");
+    if(req.body.package==null || req.body.package==""){
+        res.status(400).send({message:"package name missing"});
     }else{
-    app.findOne({package:req.params.package}).select('-package').exec(function(error,result){
+    app.findOne({package:req.body.package}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
         }else{
@@ -75,14 +75,14 @@ exports.getAppData = function (req, res) {
 
 
 
-exports.package = function(req,res){
-  app
-    .findOne({'appName': req.params.appName})
-    .exec(function (error, resData) {
-      if(error){
-        res.status(500).send({error:error});
-      }else{
-        res.status(200).send({result:resData});
-      }
-    })
-}
+// exports.package = function(req,res){
+//   app
+//     .findOne({'appName': req.body.appName})
+//     .exec(function (error, resData) {
+//       if(error){
+//         res.status(500).send({error:error});
+//       }else{
+//         res.status(200).send({result:resData});
+//       }
+//     })
+// }

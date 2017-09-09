@@ -11,6 +11,6 @@ router.post('/push/:packageName',user.package);
 
 
 router.post('/addapp',app.add);
-router.get('/getapp/:package',app.getAppData);
+router.post('/getapp',app.getAppData);
 
 module.exports=router;
