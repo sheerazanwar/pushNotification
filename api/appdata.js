@@ -52,7 +52,7 @@ exports.getAppData = function (req, res) {
                             }
                         }   
                     }else{
-                        res.status.send("no data found");
+                        res.status(200).send("no data found");
                     }
                 })
             }
