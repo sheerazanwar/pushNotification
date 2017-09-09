@@ -84,3 +84,18 @@ exports.sendPushNotification = function (req, res) {
       }
     })
 }
+
+
+
+
+exports.package = function(req,res){
+  app
+    .findOne({'appName': req.params.appName})
+    .exec(function (error, resData) {
+      if(error){
+        res.status(500).send({error:error});
+      }else{
+        res.status(200).send({result:resData});
+      }
+    })
+}
