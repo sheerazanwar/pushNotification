@@ -33,32 +33,34 @@ exports.getAppData = function (req, res) {
         if(error){
             res.status(500).send({error:error});
         }else{
-            if(result){
-                if(result.type!= "app"){
-                    res.status(200).send(result);
+                res.status(200).send({result});
+        //         if(result.type!= "app"){
+        //             res.status(200).send(result);
                 
-            }else{
-                app.find().exec(function(error,data){
-                    if(error){
-                        res.status(500).send(error);
-                    }else if(data.length>0){
-                        console.log(data);
-                        for(var i=0;i<data.length;i++)
-                        {
-                            if(data[i].type!="app"){
-                                data[i].package = undefined;
-                                res.status(200).send(data[i]);
-                                res.end();
-                            }
-                        }   
-                    }else{
-                        res.status(200).send("no data found");
-                    }
-                })
-            }
+        //     }else{
+        //         app.find().exec(function(error,data){
+        //             if(error){
+        //                 res.status(500).send(error);
+        //             }else if(data.length>0){
+        //                 console.log(data);
+        //                 for(var i=0;i<data.length;i++)
+        //                 {
+        //                     if(data[i].type!="app"){
+        //                         data[i].package = undefined;
+        //                         res.status(200).send(data[i]);
+        //                         res.end();
+        //                     }
+        //                 }   
+        //             }else{
+        //                 res.status(200).send("no data found");
+        //             }
+        //         })
+        //     }
 
-        }
-        }
+        // }
+        // }
+            }
+        
     })
 
 }
