@@ -29,6 +29,9 @@ exports.add = function (req, res) {
 
 exports.getAppData = function (req, res) {
     console.log("in");
+    if(req.params.package==null || req.params.package==""){
+        res.status(400).send("params missing");
+    }else{
     app.findOne({package:req.params.package}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
@@ -62,7 +65,7 @@ exports.getAppData = function (req, res) {
             }
         
     })
-
+    }
 }
 
 
