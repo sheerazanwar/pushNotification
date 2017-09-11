@@ -28,10 +28,10 @@ exports.add = function (req, res) {
 
 
 exports.getAppData = function (req, res) {
-    console.log("in");
-    if(req.body.package==null || req.body.package==""){
-        res.status(400).send({message:"package name missing"});
-    }else{
+   // console.log("in");
+    // if(req.body.package==null || req.body.package==""){
+    //     res.status(400).send({message:"package name missing"});
+    // }else{
     app.find({}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
@@ -78,7 +78,7 @@ exports.getAppData = function (req, res) {
             }
         
     })
-    }
+   // }
 }
 
 
