@@ -6,7 +6,7 @@ var routes = require('./routes/route.js');
 mongoose.Promise = require('bluebird');
 var app = express();
 
-mongoose.connect('process.env.mongoConnection');
+mongoose.connect('mongodb://sofittech:sofitpush@ds121622.mlab.com:21622/push');
 mongoose.connection.on('connected',function (){
   console.log('connected to database');
 });
