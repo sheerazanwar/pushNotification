@@ -32,11 +32,24 @@ exports.getAppData = function (req, res) {
     if(req.body.package==null || req.body.package==""){
         res.status(400).send({message:"package name missing"});
     }else{
-    app.findOne({package:req.body.package}).select('-package').exec(function(error,result){
+    app.find({}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
         }else{
-                res.status(200).send({result});
+              if(result.length==0){
+                res.status(200).send("nothing found");
+              }else{
+                for(var i = 0; i<result.length ; i++){
+                  if(result[i].type == "app"){
+                    if(result[i].imageUrl != req.body.package){
+                      res.status(200).send(result[i]);
+                    }
+                  }
+                }
+              }
+
+
+        //        res.status(200).send({result});
         //         if(result.type!= "app"){
         //             res.status(200).send(result);
                 
