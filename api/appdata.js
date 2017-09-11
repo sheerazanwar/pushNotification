@@ -29,9 +29,19 @@ exports.add = function (req, res) {
 
 exports.getAppData = function (req, res) {
    // console.log("in");
-    // if(req.body.package==null || req.body.package==""){
-    //     res.status(400).send({message:"package name missing"});
-    // }else{
+    if(req.body.package==null || req.body.package==""){
+         app.find({}).select('-package').exec(function(error,result){
+        if(error){
+            res.status(500).send({error:error});
+        }else{
+              if(result.length==0){
+                res.status(200).send("nothing found");
+              }else{
+                res.status(200).send(result[0]);
+              }
+        }
+         })
+    }else{
     app.find({}).select('-package').exec(function(error,result){
         if(error){
             res.status(500).send({error:error});
@@ -78,7 +88,7 @@ exports.getAppData = function (req, res) {
             }
         
     })
-   // }
+    }
 }
 
 
