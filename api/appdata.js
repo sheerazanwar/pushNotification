@@ -28,7 +28,6 @@ exports.add = function (req, res) {
 
 
 exports.getAppData = function (req, res) {
-   // console.log("in");
     if(req.body.package==null || req.body.package==""){
          app.find({}).select('-package').exec(function(error,result){
         if(error){
@@ -37,7 +36,7 @@ exports.getAppData = function (req, res) {
               if(result.length==0){
                 res.status(200).send("nothing found");
               }else{
-                console.log(result[0]);
+
                 res.status(200).send(result[0]);
               }
         }
@@ -47,7 +46,6 @@ exports.getAppData = function (req, res) {
       if(error){
         res.status(500).send({error:error});
       }else{
-        console.log(result[0]);
         res.status(200).send(result[0]);
       }
     })
