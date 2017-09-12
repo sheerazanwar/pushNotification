@@ -57,7 +57,7 @@ exports.sendPushNotification = function (req, res) {
             .status(200)
             .send({message: 'app app not fount'});
         } else {
-          var notificationHubService = azure.createNotificationHubService(resData.appName,resData.appUrl);
+          var notificationHubService = azure.createNotificationHubService(process.env.appName,process.env.appUrl);
           var payload = {
             data: {
               title: req.body.title,

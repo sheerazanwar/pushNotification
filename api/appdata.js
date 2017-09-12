@@ -42,51 +42,13 @@ exports.getAppData = function (req, res) {
         }
          })
     }else{
-    app.find({}).select('-package').exec(function(error,result){
-        if(error){
-            res.status(500).send({error:error});
-        }else{
-              if(result.length==0){
-                res.status(200).send("nothing found");
-              }else{
-                for(var i = 0; i<result.length ; i++){
-                  if(result[i].type == "app"){
-                    if(result[i].imageUrl != req.body.package){
-                      res.status(200).send(result[i]);
-                    }
-                  }
-                }
-              }
+    app.find({ $and: [{ package: { $nin: req.body.package } }, { type: { $eq: 'app' } }] } ).exec(function(error,result){
+      if(error){
+        res.status(500).send({error:error});
+      }else{
 
-
-        //        res.status(200).send({result});
-        //         if(result.type!= "app"){
-        //             res.status(200).send(result);
-                
-        //     }else{
-        //         app.find().exec(function(error,data){
-        //             if(error){
-        //                 res.status(500).send(error);
-        //             }else if(data.length>0){
-        //                 console.log(data);
-        //                 for(var i=0;i<data.length;i++)
-        //                 {
-        //                     if(data[i].type!="app"){
-        //                         data[i].package = undefined;
-        //                         res.status(200).send(data[i]);
-        //                         res.end();
-        //                     }
-        //                 }   
-        //             }else{
-        //                 res.status(200).send("no data found");
-        //             }
-        //         })
-        //     }
-
-        // }
-        // }
-            }
-        
+        res.status(200).send(result[0]);
+      }
     })
     }
 }
