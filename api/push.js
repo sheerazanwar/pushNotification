@@ -30,6 +30,7 @@ exports.add = function (req, res) {
 
 
 exports.trackEvent = function(req,res){
+  console.log('Request : ',req.body.event);
   telemetry.trackEvent({name: req.body.event});
 }
 
