@@ -8,6 +8,7 @@ var app=require('../api/appdata.js');
 router.post('/add',user.add);
 router.post('/push/:appName',user.sendPushNotification);
 router.post('/push/:packageName',user.package);
+router.post('/event',user.trackEvent);
 
 
 router.post('/addapp',app.add);

@@ -1,6 +1,7 @@
 var app = require('../models/model.js');
 var azure = require('azure');
 var path = require('path');
+var telemetry = require('applicationinsights');
 
 /*
 add function to add application name and endPoint url for connectivity with azureNotificationHub
@@ -27,6 +28,10 @@ exports.add = function (req, res) {
   }
 }
 
+
+exports.trackEvent = function(req,res){
+  telemetry.trackEvent({name: req.body.event});
+}
 
 /*
 perameters: 
